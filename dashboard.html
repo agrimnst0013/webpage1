@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Learning Dashboard</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+:root{--bg:#fff;--page:#fff;--text:#111827;--muted:#4B5563;--border:#E5E7EB;--border2:#D1D5DB;--blue:#2563EB;--gfx:#E8ECF4;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b0d10;--page:#0b0d10;--text:#F3F4F6;--muted:#9CA3AF;--border:#262A31;--border2:#374151;--blue:#60A5FA;--gfx:#2A2F3A;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0b0d10;--page:#0b0d10;--text:#F3F4F6;--muted:#9CA3AF;--border:#262A31;--border2:#374151;--blue:#60A5FA;--gfx:#2A2F3A;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans','Inter',system-ui,sans-serif}
+button{font:inherit;cursor:pointer;color:inherit}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+header{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;border-bottom:1px solid var(--border);background:var(--page);gap:16px}
+.l,.r{display:flex;align-items:center;gap:16px}
+.l{min-width:0}
+.dd{display:flex;align-items:center;gap:8px;border:1px solid var(--border2);border-radius:8px;padding:6px 12px;background:transparent;font-weight:600;font-size:14px;white-space:nowrap}
+nav{display:flex;height:64px;overflow-x:auto;scrollbar-width:none}
+nav a{display:flex;align-items:center;padding:0 12px;font-size:14px;font-weight:500;color:var(--muted);text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent}
+nav a.on{color:var(--blue);border-color:var(--blue)}
+.ic{position:relative;background:none;border:0;padding:4px;display:flex;color:var(--muted)}
+.dot{position:absolute;top:2px;right:2px;width:8px;height:8px;border-radius:50%;background:#2563EB;border:2px solid var(--page)}
+.av{border-radius:50%;background:linear-gradient(135deg,#F59E0B,#EC4899);display:inline-block;flex:none}
+main{max-width:1352px;margin:0 auto;padding:32px 24px 64px}
+.hero{display:flex;align-items:center;gap:16px}
+.arr{flex:none;width:36px;height:36px;border:1px solid var(--border);border-radius:8px;background:var(--page);font-size:16px}
+.banner{flex:1;min-width:0;max-width:1200px;margin:0 auto;border-radius:16px;overflow:hidden;padding:48px;color:#fff;background:linear-gradient(135deg,#2E1065 0%,#4C1D95 50%,#5B21B6 100%);display:grid;grid-template-columns:1.1fr 1fr;gap:24px;align-items:center;min-height:320px}
+.banner h1{margin:0 0 24px;font-size:30px;line-height:1.25;font-weight:800;max-width:480px}
+.cta{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.reg{background:#fff;color:#111827;border:0;border-radius:8px;padding:10px 20px;font-weight:700}
+.proof{display:flex;align-items:center;gap:10px;font-size:13px}
+.stack{display:flex}
+.stack .av{width:28px;height:28px;border:2px solid #fff;margin-left:-8px}
+.stack .av:first-child{margin-left:0}
+.stack .av:nth-child(2){background:linear-gradient(135deg,#34D399,#2563EB)}
+.stack .av:nth-child(3){background:linear-gradient(135deg,#F472B6,#8B5CF6)}
+.stairs{position:relative;height:260px}
+.step{position:absolute;width:44%;height:56px;border-radius:8px;display:flex;align-items:center;gap:8px;padding:0 12px;font-weight:800;font-size:13px;letter-spacing:.04em;box-shadow:0 0 28px var(--g),inset 0 -8px 0 rgba(0,0,0,.18);transform:skewY(-12deg)}
+.step svg{flex:none}
+.s1{left:0;bottom:0;background:#3B82F6;--g:#3B82F680}
+.s2{left:18%;bottom:50px;background:#22C55E;--g:#22C55E80}
+.s3{left:36%;bottom:100px;background:#FBBF24;color:#422006;--g:#FBBF2480}
+.s4{left:54%;bottom:150px;background:#F97316;--g:#F9731680}
+.dots{display:flex;justify-content:center;gap:8px;margin:16px 0 40px}
+.dots i{width:8px;height:8px;border-radius:50%;background:var(--border2)}
+.dots i:first-child{background:var(--text)}
+.sh{display:flex;align-items:baseline;gap:16px;margin-bottom:20px}
+.sh h2{margin:0;font-size:22px;font-weight:800}
+.sh a{color:var(--blue);font-size:14px;font-weight:600;text-decoration:none}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.card{border-radius:16px;overflow:hidden;display:flex;flex-direction:column;background:#111315;color:#fff}
+.card.light{background:#fff;color:#111827;border:1px solid var(--border)}
+.gfx{height:140px;background:var(--gfx);display:flex;align-items:center;justify-content:center}
+.meta{position:relative;background:#111315;color:#fff;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:10px 72px 10px 20px;min-height:40px;display:flex;align-items:center}
+.light .meta{background:#1F2937}
+.meta .av{position:absolute;right:16px;top:-14px;width:40px;height:40px;border:3px solid #111315}
+.light .meta .av{border-color:#fff}
+.body{padding:20px;flex:1;display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+.body h3{margin:0;font-size:18px;font-weight:700;line-height:1.35}
+.pill{border:1px solid #374151;color:#D1D5DB;border-radius:999px;padding:3px 12px;font-size:12px;font-weight:600}
+.light .pill{border-color:var(--border2);color:#374151}
+.act{margin-top:auto;width:100%;height:40px;border-radius:10px;border:0;background:#272A30;color:#E5E7EB;font-weight:600;font-size:14px}
+.light .act{background:transparent;border:1px solid var(--border2);color:#374151}
+@media(max-width:1024px){.grid{grid-template-columns:repeat(2,1fr)}.banner{grid-template-columns:1fr;padding:32px}}
+@media(max-width:700px){.grid{grid-template-columns:1fr}.arr{display:none}header{padding:0 12px}.r .ic:first-child{display:none}.stairs{height:220px}.banner h1{font-size:24px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="l">
+    <button class="dd" aria-label="Your Courses">
+      <svg width="20" height="20" viewBox="0 0 24 24"><path d="M12 2l9 5v10l-9 5-9-5V7z" fill="#6366F1"/><path d="M12 2l9 5-9 5-9-5z" fill="#A78BFA"/><path d="M12 12l9-5v10l-9 5z" fill="#2563EB"/></svg>
+      Your Courses
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <nav aria-label="Primary">
+      <a class="on" href="#">Explore</a><a href="#">Today's Question</a><a href="#">AI Tryouts</a><a href="#">Coderush</a><a href="#">Games</a><a href="#">Playground</a>
+    </nav>
+  </div>
+  <div class="r">
+    <button class="ic" aria-label="Referrals"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg><span class="dot"></span></button>
+    <button class="ic" aria-label="Notifications"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 8a6 6 0 0112 0c0 7 3 8 3 8H3s3-1 3-8M10 20a2 2 0 004 0"/></svg></button>
+    <button class="ic" aria-label="Account" style="gap:4px;align-items:center"><span class="av" style="width:32px;height:32px"></span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
+  </div>
+</header>
+
+<main>
+  <section class="hero" aria-label="Featured">
+    <button class="arr" aria-label="Previous">←</button>
+    <div class="banner">
+      <div>
+        <h1>Start your career in Data Science through our DS Program. Applications open.</h1>
+        <div class="cta">
+          <button class="reg">Register Now &gt;</button>
+          <div class="proof"><span class="stack"><i class="av"></i><i class="av"></i><i class="av"></i></span>5000+ people have registered</div>
+        </div>
+      </div>
+      <div class="stairs" aria-hidden="true">
+        <div class="step s1"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M5 19L19 5M7 7h.01M17 17h.01"/></svg>MATH</div>
+        <div class="step s2"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16M10 4v16"/></svg>EXCEL</div>
+        <div class="step s3"><svg width="20" height="20" viewBox="0 0 24 24"><path d="M12 3c-4 0-4 2-4 3v2h4v1H6c-2 0-3 2-3 4s1 4 3 4h2v-3c0-2 2-3 3-3h4c2 0 3-1 3-3V6c0-2-3-3-6-3z" fill="#1D4ED8"/><path d="M12 21c4 0 4-2 4-3v-2h-4v-1h6c2 0 3-2 3-4s-1-4-3-4h-2v3c0 2-2 3-3 3H9c-2 0-3 1-3 3v2c0 2 3 3 6 3z" fill="#422006"/></svg>PYTHON</div>
+        <div class="step s4"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>SQL</div>
+      </div>
+    </div>
+    <button class="arr" aria-label="Next">→</button>
+  </section>
+  <div class="dots" aria-hidden="true"><i></i><i></i><i></i></div>
+
+  <section>
+    <div class="sh"><h2>Your Courses</h2><a href="#">Show All &gt;</a></div>
+    <div class="grid">
+      <article class="card light">
+        <div class="gfx"><svg width="150" height="100" viewBox="0 0 150 100" aria-hidden="true"><circle cx="55" cy="50" r="34" fill="#F9A8D4" fill-opacity=".55"/><circle cx="95" cy="50" r="34" fill="#93C5FD" fill-opacity=".55"/><circle cx="75" cy="30" r="28" fill="#C4B5FD" fill-opacity=".5"/></svg></div>
+        <div class="meta">Started: 2 Jun 2024, 6:00 pm<span class="av"></span></div>
+        <div class="body"><h3>Python for Beginners</h3><span class="pill">Enrolled</span><button class="act" aria-label="Open course"></button></div>
+      </article>
+      <article class="card">
+        <div class="gfx"><svg width="110" height="110" viewBox="0 0 110 110" aria-hidden="true"><path d="M55 60l36 18-36 18-36-18z" fill="#60A5FA" fill-opacity=".6"/><path d="M55 38l36 18-36 18-36-18z" fill="#2DD4BF" fill-opacity=".6"/><path d="M55 16l36 18-36 18-36-18z" fill="#F472B6" fill-opacity=".6"/></svg></div>
+        <div class="meta">Started: 17 Aug 2026, 4:00 pm<span class="av"></span></div>
+        <div class="body"><h3>Newton School of Technology'26 (CS+AI) (RU)</h3><span class="pill">Enrolled</span><button class="act" aria-label="Open course"></button></div>
+      </article>
+      <article class="card">
+        <div class="gfx"><svg width="110" height="110" viewBox="0 0 110 110" aria-hidden="true"><path d="M55 60l36 18-36 18-36-18z" fill="#60A5FA" fill-opacity=".6"/><path d="M55 38l36 18-36 18-36-18z" fill="#2DD4BF" fill-opacity=".6"/><path d="M55 16l36 18-36 18-36-18z" fill="#F472B6" fill-opacity=".6"/></svg></div>
+        <div class="meta">Started: 1 Oct 2026, 6:00 pm<span class="av"></span></div>
+        <div class="body"><h3>Newton School of Technology'26</h3><span class="pill">Screening Passed</span><button class="act" aria-label="Open course"></button></div>
+      </article>
+    </div>
+  </section>
+</main>
+</body>
+</html>
